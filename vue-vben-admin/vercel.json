@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://gxcah.com:8077/:path*"
+    }
+  ]
+}
