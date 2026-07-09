@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物流仓储可视化面板</title>
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            padding: 16px;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* 整体网格布局容器 */
+        .panel-wrap {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            grid-template-rows: 60px 1fr;
+            grid-template-areas:
+                "nav header"
+                "nav main";
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+        }
+        /* 左侧导航栏 - 红色边框 */
+        .sidebar-nav {
+            grid-area: nav;
+            border: 2px solid #e62424;
+            border-radius: 8px;
+            padding: 24px 12px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(230, 36, 36, 0.1);
+        }
+        .sidebar-nav h3 {
+            color: #c41e1e;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        .nav-item {
+            font-size: 16px;
+            color: #333;
+            line-height: 2.8;
+            padding-left: 10px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+            margin-bottom: 4px;
+        }
+        .nav-item:hover {
+            background: #fce8e8;
+            color: #e62424;
+        }
+        /* 导航选中激活样式 */
+        .nav-item.active {
+            background-color: #e62424;
+            color: #fff;
+        }
+        /* 顶部黄色标题栏 */
+        .header-bar {
+            grid-area: header;
+            border: 2px solid #e6b000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background-color: #fffef5;
+            box-shadow: 0 2px 8px rgba(230, 176, 0, 0.1);
+        }
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #b38600;
+        }
+        /* 右上角红色圆形模块 */
+        .circle-box {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #e62424;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .circle-box:hover {
+            background-color: #fce8e8;
+        }
+        /* 主内容绿色面板 */
+        .main-content {
+            grid-area: main;
+            border: 2px solid #23a040;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fbfefb;
+            box-shadow: 0 2px 8px rgba(35, 160, 64, 0.1);
+            overflow-y: auto;
+        }
+
+        /* 响应式适配：平板/手机 */
+        @media screen and (max-width: 768px) {
+            .panel-wrap {
+                grid-template-columns: 1fr;
+                grid-template-rows: 60px 160px 1fr;
+                grid-template-areas:
+                    "header"
+                    "nav"
+                    "main";
+            }
+            .sidebar-nav h3 {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-wrap">
+        <!-- 左侧红色导航栏 -->
+        <div class="sidebar-nav">
+            <h3>导航菜单</h3>
+            <div class="nav-item active">1.数据大屏</div>
+            <div class="nav-item">2.入库管理</div>
+            <div class="nav-item">3.出库管理</div>
+            <div class="nav-item">4.订单审核</div>
+        </div>
+        <!-- 顶部黄色标题栏 -->
+        <div class="header-bar">
+            <div class="header-title">物流仓储可视化管理平台</div>
+            <div class="circle-box"></div>
+        </div>
+        <!-- 主内容绿色区域 -->
+        <div class="main-content">
+            <h2 style="color:#23a040;margin-bottom:16px;">仓储可视化主展示区域</h2>
+            <p>此处可放置仓储图表、库存数据、货架分布图、出入库实时统计等可视化内容</p>
+        </div>
+    </div>
+    <script>
+        // 导航点击切换选中效果
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // 清除所有激活状态
+                navItems.forEach(nav => nav.classList.remove('active'));
+                // 当前点击添加激活
+                item.classList.add('active');
+            })
+        })
+    </script>
+</body>
+</html>
